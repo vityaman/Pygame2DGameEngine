@@ -14,6 +14,16 @@ class Direction:
     DOWN_RIGHT  = pi / 4
     DOWN_LEFT   = 3 * pi / 4
 
+    @staticmethod
+    def of(angle: float):
+        if Direction.UP_LEFT < angle < Direction.UP_RIGHT:
+            return Direction.UP
+        if Direction.DOWN_RIGHT < angle < Direction.DOWN_LEFT:
+            return Direction.DOWN
+        if Direction.UP_RIGHT <= angle <= Direction.DOWN_RIGHT:
+            return Direction.RIGHT
+        return Direction.LEFT
+
 
 def side_from(other, obj):
     if other.rect.right <= obj.rect.left:
@@ -45,4 +55,5 @@ class MovableObject(GameObject):
         return self.angle
 
     def move(self):
-        self.transfer(cos(self.get_angle()) * self.get_velocity(), sin(self.get_angle()) * self.get_velocity())
+        self.transfer(cos(self.get_angle()) * self.get_velocity(),
+                      sin(self.get_angle()) * self.get_velocity())

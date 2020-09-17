@@ -19,16 +19,31 @@ if __name__ == "__main__":
     pygame.display.set_caption(settings.WINDOW_TITLE)
 
     player = Character(
-        rect=pygame.rect.Rect(0, 0, 100, 100),
-        drawable=drawable.AnimatedImage(
-            [
-                drawable.load_image('res\\img\\dora.jpg', (100, 100)),
-                drawable.load_image('res\\img\\dora1.jpg', (100, 100)),
-                drawable.load_image('res\\img\\ulianka.png', (100, 100))
-            ],
-            animation_duration=27,
-            shift_x=-100 // 2,
-            shift_y=-100 // 2),
+        rect=pygame.rect.Rect(0, 0, 80, 80),
+        animation_right=drawable.AnimatedImage([
+            drawable.load_image('res\\img\\player\\hr1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hr2.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hr1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hr2.png', (80, 80), (255, 255, 255))
+        ], 10, -80 // 2, -80 // 2),
+        animation_left=drawable.AnimatedImage([
+            drawable.load_image('res\\img\\player\\hl1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hl2.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hl1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hl2.png', (80, 80), (255, 255, 255))
+        ], 10, -80 // 2, -80 // 2),
+        animation_up=drawable.AnimatedImage([
+            drawable.load_image('res\\img\\player\\hu1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hu2.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hu1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hu3.png', (80, 80), (255, 255, 255))
+        ], 10, -80 // 2, -80 // 2),
+        animation_down=drawable.AnimatedImage([
+            drawable.load_image('res\\img\\player\\hd1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hd2.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hd1.png', (80, 80), (255, 255, 255)),
+            drawable.load_image('res\\img\\player\\hd3.png', (80, 80), (255, 255, 255))
+        ], 10, -80 // 2, -80 // 2),
         layer=99,
         velocity=10,
         angle=Direction.RIGHT)

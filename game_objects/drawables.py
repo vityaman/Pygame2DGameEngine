@@ -19,7 +19,7 @@ class Image(IDrawable):
 
 
 def load_image(path: str, scale: tuple, color_key: tuple = None):
-    image = pygame.image.load(path)
+    image = pygame.image.load(path).convert()
     image = pygame.transform.scale(image, scale)
     if color_key is not None:
         image.set_colorkey(color_key)
@@ -50,18 +50,19 @@ class Rectangle(IDrawable):
 
 
 class AnimatedImage(IDrawable):
-    def __init__(self, images: list, animation_duration: int, shift_x=0, shift_y=0):
+    def __init__(self, images: list, image_duration: int, shift_x=0, shift_y=0):
         self.images = images
         self.shift_x = shift_x
         self.shift_y = shift_y
-        self.animation_duration = animation_duration + 1
-        self.image_duration = animation_duration // len(images)
+        self.animation_duration = image_duration * len(images)
+        self.image_duration = image_duration
         self.counter = 0
 
     def tick(self):
-        self.counter = (self.counter + 1) % (self.animation_duration - 1)
+        self.counter = (self.counter + 1) % self.animation_duration
 
     def draw(self, canvas, x: int, y: int):
-        print(self.counter, self.counter // self.image_duration)
         canvas.blit(self.images[self.counter // self.image_duration], (x + self.shift_x, y + self.shift_y))
         self.tick()
+
+

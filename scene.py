@@ -163,6 +163,10 @@ class TestScene(Scene):
         if keys[pygame.K_d]:
             self.player.direct(Direction.RIGHT)
 
+        if self.player.intent_dx == 0 and self.player.intent_dy == 0:
+            self.player.drawable.counter -= 1
+        self.player.velocity = 0
+
     def draw_objects(self):
         self.window.fill((0, 0, 0))
         super().draw_objects()
