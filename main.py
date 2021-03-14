@@ -60,15 +60,6 @@ if __name__ == "__main__":
         layer=0
     ))
 
-    scene.add_object(GameObject(
-            rect=pygame.rect.Rect(500, 0, 500, 650),
-            drawable=drawable.Image(
-                drawable.load_image('res\\img\\uli.jpg', (500, 650)),
-                shift_x=-500 // 2,
-                shift_y=-650 // 2),
-            layer=0
-    ))
-
     scene.add_object(CollidableMovableObject(
             rect=pygame.rect.Rect(100, 120, 50, 50),
             drawable=drawable.Image(
