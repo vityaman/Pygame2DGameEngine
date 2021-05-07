@@ -4,7 +4,11 @@ from engine.game import Game
 
 class AdventureGame(Game):
     def run(self):
-        TestScene(self.screen).open()
+        while True:
+            try:
+                TestScene(self.screen).open()
+            except Exception as e:
+                print(e)
 
     def exit(self):
         pass

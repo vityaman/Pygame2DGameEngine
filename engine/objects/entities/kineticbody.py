@@ -43,7 +43,7 @@ class KineticBody(IKineticBody, IEntity):
 
     def update(self):
         self.velocity += self.acceleration
-        self._position_shift = self.velocity
+        self._position_shift = self.velocity.copy()
 
     def collides_with(self, other: ICollidable) -> bool:
         return self.collider.collides_with(other.collider)
@@ -77,11 +77,13 @@ class KineticBody(IKineticBody, IEntity):
         self._acceleration = acceleration
 
     @classmethod
-    def handle_collisions_of_all(cls, bodies: list['IKineticBody'], obstacles: list[ICollidable]):
+    def handle_collisions_of_all(cls, bodies: list['KineticBody'], obstacles: list[ICollidable]):
         for body in bodies:
             for obstacle in body.future_obstacles(obstacles):
                 body.handle_collision_with(obstacle)
 
             #  print(list(e for e in obstacles if body.collides_with(e) and e is not body))  # TODO DEBUG
 
-            body.confirm_collision()
+            # TODO: bad solution
+            if any(map(body.will_collide_with, obstacles)):
+                body.confirm_collision()

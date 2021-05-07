@@ -2,10 +2,8 @@ import math
 
 
 def sign(n: float) -> int:
-    if n > 0:
-        return 1
-    if n < 0:
-        return -1
+    if n != 0:
+        return n / abs(n)
     return 0
 
 
@@ -40,7 +38,7 @@ class Vector2D:
 
     @property
     def length(self) -> float:
-        return math.sqrt(self.x * self.y + self.y + self.y)
+        return math.sqrt(self.x * self.x + self.y * self.y)
 
     def distance_to(self, other: 'Vector2D') -> float:
         return math.sqrt((self.x - other.x) * (self.x - other.x) + (self.y - other.y) * (self.y - other.y))

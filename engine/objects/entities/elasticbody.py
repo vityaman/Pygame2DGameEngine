@@ -22,11 +22,12 @@ class ElasticBody(KineticBody):
     def handle_elastic_collisions_of_all(cls, bodies: list['ElasticBody'], obstacles: list[ICollidable]):
         # Consider all pairs of bodies to handle elastic collisions:
         for i in range(len(bodies)):
-            bodies[i].collider.position += bodies[i].velocity
+            velocity = bodies[i].velocity.copy()
+            bodies[i].collider.position += velocity
             for j in range(i + 1, len(bodies)):
                 if bodies[i].collides_with(bodies[j]):
                     bodies[i].handle_elastic_collision_with(bodies[j])
-            bodies[i].collider.position -= bodies[i].velocity
+            bodies[i].collider.position -= velocity
 
         # Handle collisions with other
         # TODO: Here we iteration trough the all Collidable objects

@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11e39b70-634e-49fe-8fa5-88f612afd1cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/objects/entities/imovable.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/objects/old_entities/wall.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adventure_game/adventure_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/adventure_game/adventure_game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adventure_game/scenes/test_scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/adventure_game/scenes/test_scene.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/entities/animated_character.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/animated_character.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/entities/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/ball.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/entities/collidable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/collidable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/entities/movable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/movable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/entities/movable_collidable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/movable_collidable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/entities/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/wall.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/objects/primitives/circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/primitives/circle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/elasticbody.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/entities/elasticbody.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/kineticbody.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/entities/kineticbody.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/objects/primitives/drawable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/primitives/drawable.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/scenes/scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/scenes/scene.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/primitives/vector2d.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/primitives/vector2d.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +180,14 @@
       <option name="presentableId" value="Default" />
       <updated>1620123073587</updated>
     </task>
+    <task id="LOCAL-00001" summary="BIG REFACTORING OF REFACTORED&#10; &#10;FEATURES&#10;- Reorganization of inheritance&#10;- UML Diagram done&#10;- Physics improved&#10;&#10;Last files are not deleted (old_entities)">
+      <created>1620395618349</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1620395618349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +202,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="BIG REFACTORING OF REFACTORED&#10; &#10;FEATURES&#10;- Reorganization of inheritance&#10;- UML Diagram done&#10;- Physics improved&#10;&#10;Last files are not deleted (old_entities)" />
+    <option name="LAST_COMMIT_MESSAGE" value="BIG REFACTORING OF REFACTORED&#10; &#10;FEATURES&#10;- Reorganization of inheritance&#10;- UML Diagram done&#10;- Physics improved&#10;&#10;Last files are not deleted (old_entities)" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -205,11 +213,6 @@
           <url>file://$PROJECT_DIR$/engine/objects/old_entities/collidable.py</url>
           <line>23</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/engine/objects/entities/elasticbody.py</url>
-          <line>38</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,3 +1,4 @@
+import math
 from random import randint
 
 import pygame
@@ -9,10 +10,10 @@ from engine.objects.entities.ientity import IEntity
 from engine.objects.entities.iupdatable import IUpdatable
 from engine.objects.entities.kineticbody import KineticBody
 from engine.objects.entities.wall import Wall
-from engine.objects.primitives.drawable import RectangleDrawable, Image, CircleDrawable, OffsetCircleDrawable
+from engine.objects.primitives.drawable import RectangleDrawable, Image, OffsetCircleDrawable
 from engine.objects.primitives.rectangle import Rectangle
 from engine.objects.primitives.rectanglecollider import RectangleCollider
-from engine.objects.primitives.vector2d import Vector2D
+from engine.objects.primitives.vector2d import Vector2D, sign
 from engine.scenes.extended_scene import ExtendedScene
 
 
@@ -59,30 +60,38 @@ class TestScene(ExtendedScene):
             self.player
         ]
 
+        image = Image('adventure_game\\res\\test\\bg1.jpg')
+        image.scale(Vector2D(W, H))
         self.entities: list[IEntity] = [
-            Wall(RectangleCollider(Rectangle(0, 0, W, H)),
-                 Image('adventure_game\\res\\test\\bg.jpg'))
+            # Wall(RectangleCollider(Rectangle(0, 0, W, H)),
+            #      image)
         ] + self.collidables
+
+        for _ in range(60):
+            r = randint(10, 20)
+            x, y = randint(T + T, W - T - T), randint(T + T, H - T - T)
+            v = Vector2D(randint(-30, 30), randint(-30, 30))
+            color = Color(randint(0, 255), randint(0, 255), randint(0, 255))
+
+            ball = ElasticBody(RectangleCollider(Rectangle(x, y, 2 * r, 2 * r)),
+                               OffsetCircleDrawable(r, color, offset=Vector2D(r, r)),
+                               mass=r * 2, velocity=v)
+
+            self.kinetic_bodies.append(ball)
+            self.elastic_bodies.append(ball)
+            self.entities.append(ball)
+            self.collidables.append(ball)
+            self.updatables.append(ball)
+
+        for i in range(len(self.elastic_bodies)):
+            for j in range(i + 1, len(self.elastic_bodies)):
+                if self.elastic_bodies[i].collides_with(self.elastic_bodies[j]):
+                    raise Exception('NOPE')
 
     def handle_events(self, events: list):
         for event in events:
             if event.type == pygame.QUIT:
                 self.close()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                r = randint(5, 20)
-                x, y = event.pos
-                v = Vector2D(randint(-20, 20), randint(-20, 20))
-                color = Color(randint(0, 255), randint(0, 255), randint(0, 255))
-
-                ball = ElasticBody(RectangleCollider(Rectangle(x, y, 2 * r, 2 * r)),
-                                   OffsetCircleDrawable(r, color, offset=Vector2D(r, r)),
-                                   mass=r * 2, velocity=v)
-
-                self.kinetic_bodies.append(ball)
-                self.elastic_bodies.append(ball)
-                self.entities.append(ball)
-                self.collidables.append(ball)
-                self.updatables.append(ball)
 
     def handle_controls(self, pressed: dict, mouse):
         self.player.velocity.set(0, 0)
@@ -101,10 +110,20 @@ class TestScene(ExtendedScene):
         for updatable in self.updatables:
             updatable.update()
 
+        # for e in self.elastic_bodies:
+        #     if e.velocity.x > 50:
+        #         e.velocity.x = 50
+        #     if e.velocity.y > 50:
+        #         e.velocity.y = 50
+
         KineticBody.handle_collisions_of_all(self.kinetic_bodies, self.collidables)
         ElasticBody.handle_elastic_collisions_of_all(self.elastic_bodies, self.not_elastic_collidables)
 
+        print(sum(e.mass * e.velocity.length for e in self.elastic_bodies))
+
     def draw(self):
+        self.screen.fill((255, 255, 255))
+
         for entity in self.entities:
             entity.draw(self.screen)
 
