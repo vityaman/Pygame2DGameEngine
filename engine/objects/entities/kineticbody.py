@@ -82,8 +82,6 @@ class KineticBody(IKineticBody, IEntity):
             for obstacle in body.future_obstacles(obstacles):
                 body.handle_collision_with(obstacle)
 
-            #  print(list(e for e in obstacles if body.collides_with(e) and e is not body))  # TODO DEBUG
-
             # TODO: bad solution
             if any(map(body.will_collide_with, obstacles)):
                 body.confirm_collision()
