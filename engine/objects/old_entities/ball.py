@@ -4,9 +4,7 @@ from pygame.math import Vector2
 from pygame.rect import Rect
 from pygame.surface import Surface
 
-from engine.objects.entities.collidable import Collidable
-from engine.objects.entities.movable import Direction
-from engine.objects.entities.movable_collidable import MovableCollidable
+from engine.objects.old_entities.movable_collidable import MovableCollidable
 from engine.objects.primitives.drawable import CircleDrawable
 
 from random import randint

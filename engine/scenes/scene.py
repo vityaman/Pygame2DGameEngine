@@ -28,7 +28,6 @@ class Scene:
         self.running = False
 
     def loop(self):
-        self.on_start()
         clock = Clock()
         while self.running:
             dt = clock.tick(self.FPS)
@@ -51,7 +50,3 @@ class Scene:
     @abstractmethod
     def on_finish(self):
         pass
-
-
-
-

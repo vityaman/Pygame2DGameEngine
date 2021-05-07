@@ -3,8 +3,8 @@ import math
 from pygame.math import Vector2
 from pygame.rect import Rect
 
-from engine.objects.entities.collidable import Collidable
-from engine.objects.entities.movable import Movable
+from engine.objects.old_entities.collidable import Collidable
+from engine.objects.old_entities.movable import Movable
 
 
 class MovableCollidable(Collidable, Movable):

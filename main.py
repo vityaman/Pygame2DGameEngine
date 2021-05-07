@@ -7,6 +7,7 @@ if __name__ == '__main__':
     pygame.font.init()
 
     screen = pygame.display.set_mode((cfg.WINDOW_WIDTH, cfg.WINDOW_HEIGHT))
+    pygame.display.set_caption("Pygame2DEngine after refactoring!")
 
     game = AdventureGame(screen)
     game.run()

@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 from pygame.rect import Rect
 
-from engine.objects.entities.movable import Direction
+from engine.objects.old_entities.movable import Direction
 
 
 class Collidable:

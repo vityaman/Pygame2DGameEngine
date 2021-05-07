@@ -1,19 +1,22 @@
-import pygame
-from pygame.math import Vector2
-from pygame.rect import Rect
-from pygame.surface import Surface
-from engine.objects.entities.collidable import Collidable
-from engine.objects.primitives.drawable import Drawable
+from pygame import Surface
+
+from engine.objects.entities.icollidable import ICollidable
+from engine.objects.entities.ientity import IEntity
+from engine.objects.primitives.drawable import IDrawable
+from engine.objects.primitives.icollider import ICollider
 
 
-class Wall(Collidable):
-    def __init__(self, collider: Rect, drawable: Drawable):
-        super().__init__(collider)
-        self.drawable = drawable
+class Wall(ICollidable, IEntity):
+    def __init__(self, collider: ICollider, drawable: IDrawable):
+        self._collider: ICollider = collider
+        self._drawable: IDrawable = drawable
 
-    def draw(self, screen: Surface):
-        self.drawable.draw(screen, Vector2(self.collider.topleft))
-        pygame.draw.rect(screen, (255, 0, 0), self.collider, 1)
+    def collides_with(self, other: 'ICollidable') -> bool:
+        return self.collider.collides_with(other.collider)
 
-    def on_collide(self, other: Collidable):
-        pass
+    @property
+    def collider(self) -> ICollider:
+        return self._collider
+
+    def draw(self, surface: Surface):
+        self._drawable.draw(surface, self.collider.position)

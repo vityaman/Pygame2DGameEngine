@@ -1,158 +1,112 @@
-import pygame
-from pygame.color import Color
-from pygame.math import Vector2
-from pygame.rect import Rect
-
 from random import randint
 
-from engine.objects.entities.animated_character import AnimatedCharacter
-from engine.objects.entities.ball import Ball
+import pygame
+from pygame.color import Color
+
+from engine.objects.entities.elasticbody import ElasticBody
+from engine.objects.entities.icollidable import ICollidable
+from engine.objects.entities.ientity import IEntity
+from engine.objects.entities.iupdatable import IUpdatable
+from engine.objects.entities.kineticbody import KineticBody
 from engine.objects.entities.wall import Wall
-from engine.objects.handlers.collisions_handler import CollisionsHandler
-from engine.objects.handlers.physics_handler import PhysicsHandler
-from engine.objects.primitives.drawable import Animation, Image, RectangleDrawable
+from engine.objects.primitives.drawable import RectangleDrawable, Image, CircleDrawable, OffsetCircleDrawable
+from engine.objects.primitives.rectangle import Rectangle
+from engine.objects.primitives.rectanglecollider import RectangleCollider
+from engine.objects.primitives.vector2d import Vector2D
 from engine.scenes.extended_scene import ExtendedScene
 
 
 class TestScene(ExtendedScene):
     def start(self):
-        W = self.screen.get_width()
-        H = self.screen.get_height()
+        W, H = self.screen.get_size()
+        T = 60
+        WALLS_COLOR = (randint(0, 255), randint(0, 255), randint(0, 255))
 
-        G_VECTOR = Vector2(0, 1)
+        image = Image('adventure_game\\res\\player\\hd1.png')
+        image.scale(Vector2D(64, 64))
+        image.set_transparent_color(Color(255, 255, 255))
+        self.player = KineticBody(collider=RectangleCollider(Rectangle(W // 2, H // 2, 64, 64)),
+                                  drawable=image,
+                                  mass=5,
+                                  velocity=Vector2D(0, 0))
 
-        self.collisions_handler = CollisionsHandler()
-        self.physics_handler = PhysicsHandler()
 
-        self.bg = Image.make('adventure_game\\res\\test\\bg.jpg')
-        self.wall_right = Wall(
-            collider=Rect(W - 80, 0, 80, H),
-            drawable=RectangleDrawable(80, H, Color(255, 255, 125))
-        )
-        self.wall_left = Wall(
-            collider=Rect(0, 0, 80, H),
-            drawable=RectangleDrawable(80, H, Color(255, 255, 125))
-        )
-        self.wall_up = Wall(
-            collider=Rect(0, 0, W, 80),
-            drawable=RectangleDrawable(W, 80, Color(255, 255, 125))
-        )
-        self.wall_down = Wall(
-            collider=Rect(0, H - 80, W, 80),
-            drawable=RectangleDrawable(W, 80, Color(255, 255, 125))
-        )
+        self.kinetic_bodies: list[KineticBody] = [
+            self.player
+        ]
 
-        self.wall_1 = Wall(
-            collider=Rect(220, 60, 50, 50),
-            drawable=RectangleDrawable(50, 50, Color(255, 255, 125))
-        )
-        self.wall_2 = Wall(
-            collider=Rect(100, 179, 50, 50),
-            drawable=RectangleDrawable(50, 50, Color(255, 255, 125))
-        )
+        self.elastic_bodies = []
 
-        self.collisions_handler.add(self.wall_right)
-        self.collisions_handler.add(self.wall_left)
-        self.collisions_handler.add(self.wall_up)
-        self.collisions_handler.add(self.wall_down)
-        self.collisions_handler.add(self.wall_1)
-        self.collisions_handler.add(self.wall_2)
+        self.collidables: list[ICollidable] = [
+            Wall(RectangleCollider(Rectangle(0, 0, W, T)),
+                 RectangleDrawable(W, T, Color(*WALLS_COLOR))),
 
-        self.physics_handler.add(self.wall_right)
-        self.physics_handler.add(self.wall_left)
-        self.physics_handler.add(self.wall_up)
-        self.physics_handler.add(self.wall_down)
-        self.physics_handler.add(self.wall_1)
-        self.physics_handler.add(self.wall_2)
+            Wall(RectangleCollider(Rectangle(0, H - T, W, T)),
+                 RectangleDrawable(W, T, Color(*WALLS_COLOR))),
 
-        self.balls = [Ball(randint(70, 1800), randint(70, 800), randint(5, 40),
-                           v=Vector2(randint(-15, 15), randint(-15, 15)),
-                           a=None)
-                      for _ in range(10)]
-        for ball in self.balls:
-            self.physics_handler.add(ball)
-            self.collisions_handler.add(ball)
+            Wall(RectangleCollider(Rectangle(0, T, T, H - T - T)),
+                 RectangleDrawable(T, H - T - T, Color(*WALLS_COLOR))),
 
-        self.player = AnimatedCharacter(
-            collider=Rect(0, 0, 80, 80),
-            animation_right=Animation([
-                Image.make('adventure_game\\res\\player\\hr1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hr2.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hr1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hr2.png', (80, 80), (255, 255, 255))
-            ], 5),
-            animation_left=Animation([
-                Image.make('adventure_game\\res\\player\\hl1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hl2.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hl1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hl2.png', (80, 80), (255, 255, 255))
-            ], 5),
-            animation_up=Animation([
-                Image.make('adventure_game\\res\\player\\hu1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hu2.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hu1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hu3.png', (80, 80), (255, 255, 255))
-            ], 5),
-            animation_down=Animation([
-                Image.make('adventure_game\\res\\player\\hd1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hd2.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hd1.png', (80, 80), (255, 255, 255)),
-                Image.make('adventure_game\\res\\player\\hd3.png', (80, 80), (255, 255, 255))
-            ], 5))
-        self.player.collider.centerx = W // 2
-        self.player.collider.centery = H // 2
-        # self.player.a = G_VECTOR
-        self.is_player_jumping = False
-        self.collisions_handler.add(self.player)
-        self.physics_handler.add(self.player)
+            Wall(RectangleCollider(Rectangle(W - T, T, T, H - T - T)),
+                 RectangleDrawable(T, H - T - T, Color(*WALLS_COLOR))),
+
+            self.player
+        ]
+
+        self.not_elastic_collidables = [] + self.collidables
+
+        self.updatables: list[IUpdatable] = [
+            self.player
+        ]
+
+        self.entities: list[IEntity] = [
+            Wall(RectangleCollider(Rectangle(0, 0, W, H)),
+                 Image('adventure_game\\res\\test\\bg.jpg'))
+        ] + self.collidables
 
     def handle_events(self, events: list):
         for event in events:
             if event.type == pygame.QUIT:
                 self.close()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                r = randint(5, 20)
+                x, y = event.pos
+                v = Vector2D(randint(-20, 20), randint(-20, 20))
+                color = Color(randint(0, 255), randint(0, 255), randint(0, 255))
+
+                ball = ElasticBody(RectangleCollider(Rectangle(x, y, 2 * r, 2 * r)),
+                                   OffsetCircleDrawable(r, color, offset=Vector2D(r, r)),
+                                   mass=r * 2, velocity=v)
+
+                self.kinetic_bodies.append(ball)
+                self.elastic_bodies.append(ball)
+                self.entities.append(ball)
+                self.collidables.append(ball)
+                self.updatables.append(ball)
 
     def handle_controls(self, pressed: dict, mouse):
-        v_vec = Vector2(0, 0)
-        v = 10
+        self.player.velocity.set(0, 0)
+        V = 15
 
         if pressed[pygame.K_d]:
-            v_vec += Vector2(v, 0)
+            self.player.velocity.x = V
         if pressed[pygame.K_a]:
-            v_vec += Vector2(-v, 0)
+            self.player.velocity.x = -V
         if pressed[pygame.K_w]:
-            v_vec += Vector2(0, -v)
+            self.player.velocity.y = -V
         if pressed[pygame.K_s]:
-            v_vec += Vector2(0, +v)
-        # if pressed[pygame.K_q]:
-        #     v_vec += Vector2(0, -2 * v)
-
-        self.player.set_movement(v_vec)
-
-        if pressed[pygame.K_SPACE]:
-            input()
+            self.player.velocity.y = V
 
     def update(self, dt: int):
-        for ball in self.balls:
-            ball.update()
-        self.player.update()
-        self.physics_handler.handle_physics()
-        self.collisions_handler.handle_movables()
+        for updatable in self.updatables:
+            updatable.update()
+
+        KineticBody.handle_collisions_of_all(self.kinetic_bodies, self.collidables)
+        ElasticBody.handle_elastic_collisions_of_all(self.elastic_bodies, self.not_elastic_collidables)
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
-        self.bg.draw(self.screen, Vector2(0, 0))
-
-        self.wall_up.draw(self.screen)
-        self.wall_down.draw(self.screen)
-        self.wall_right.draw(self.screen)
-        self.wall_left.draw(self.screen)
-        self.wall_1.draw(self.screen)
-        self.wall_2.draw(self.screen)
-
-        for ball in self.balls:
-            ball.draw(self.screen)
-
-        self.player.draw(self.screen)
+        for entity in self.entities:
+            entity.draw(self.screen)
 
     def finish(self):
         pass

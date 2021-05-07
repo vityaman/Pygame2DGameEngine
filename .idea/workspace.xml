@@ -2,45 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11e39b70-634e-49fe-8fa5-88f612afd1cf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Pygame2DGameEngine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/scenes/extended_scene.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/scenes/menu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/scenes/scene.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/2DGameEngine.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/admin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_objects/character.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_objects/collidable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_objects/collidable_movable_objects.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_objects/drawables.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_objects/game_object.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_objects/movable_object.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/cat.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/ded.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/dora.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/dora1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/emilyrudd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hd1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hd2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hd3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hl1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hl2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hr1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hr2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hu1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hu2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/player/hu3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/img/ulianka.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/objects/entities/imovable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adventure_game/scenes/test_scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/adventure_game/scenes/test_scene.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/animated_character.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/animated_character.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/collidable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/collidable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/movable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/movable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/movable_collidable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/movable_collidable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/entities/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/old_entities/wall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/primitives/circle.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/primitives/circle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/objects/primitives/drawable.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/objects/primitives/drawable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/scenes/scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/scenes/scene.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +30,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1s4DejzIPgxupYG83I3FH07ZJOM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -72,10 +53,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\UserFiles\dev\python\Pygame2DGameEngine\engine\objects\entities" />
+      <recent name="D:\UserFiles\dev\python\Pygame2DGameEngine\engine\objects\old_entities" />
       <recent name="D:\UserFiles\dev\python\Pygame2DGameEngine\engine\objects\entities\physics" />
       <recent name="D:\UserFiles\dev\python\Pygame2DGameEngine\engine\scenes" />
       <recent name="D:\UserFiles\dev\python\Pygame2DGameEngine\adventure_game\scenes" />
-      <recent name="D:\UserFiles\dev\python\Pygame2DGameEngine\adventure_game" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -91,7 +72,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\UserFiles\dev\python\Pygame2DGameEngine\engine\objects\entities\animated_character.py" />
+      <option name="SCRIPT_NAME" value="D:\UserFiles\dev\python\Pygame2DGameEngine\engine\objects\old_entities\animated_character.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -221,11 +202,21 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/engine/objects/entities/collidable.py</url>
+          <url>file://$PROJECT_DIR$/engine/objects/old_entities/collidable.py</url>
           <line>23</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/engine/objects/entities/elasticbody.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="collided" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
