@@ -15,8 +15,8 @@ class ElasticBody(KineticBody):
         bv, bm = other.velocity, other.mass
 
         # TODO: code repeating (formula)
-        self.velocity = av * (am - bm) / (am + bm)  + bv * 2 * bm / (am + bm)
-        other.velocity = av * 2 * am / (am + bm) + bv * (bm - am) / (am + bm)
+        self.velocity = (av * (am - bm) + bv * 2 * bm) / (am + bm)
+        other.velocity = (av * 2 * am + bv * (bm - am)) / (am + bm)
 
     @classmethod
     def handle_elastic_collisions_of_all(cls, bodies: list['ElasticBody'], obstacles: list[ICollidable]):

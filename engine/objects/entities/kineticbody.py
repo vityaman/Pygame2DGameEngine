@@ -82,6 +82,4 @@ class KineticBody(IKineticBody, IEntity):
             for obstacle in body.future_obstacles(obstacles):
                 body.handle_collision_with(obstacle)
 
-            # TODO: bad solution
-            if any(map(body.will_collide_with, obstacles)):
-                body.confirm_collision()
+            body.confirm_collision()

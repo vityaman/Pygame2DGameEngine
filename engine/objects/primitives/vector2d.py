@@ -7,7 +7,6 @@ def sign(n: float) -> int:
     return 0
 
 
-
 class Vector2D:
     INF = 10e10
 
@@ -34,6 +33,15 @@ class Vector2D:
     def normalized(self) -> 'Vector2D':
         res = self.copy()
         res.normalize()
+        return res
+
+    def rotate(self, angle: float):
+        self.x = self.x * math.cos(angle) - self.y * math.sin(angle)
+        self.y = self.x * math.sin(angle) + self.y * math.cos(angle)
+
+    def rotated(self, angle: float) -> 'Vector2D':
+        res = self.copy()
+        res.rotate(angle)
         return res
 
     @property

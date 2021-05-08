@@ -29,7 +29,8 @@ class TestScene(ExtendedScene):
         self.player = KineticBody(collider=RectangleCollider(Rectangle(W // 2, H // 2, 64, 64)),
                                   drawable=image,
                                   mass=5,
-                                  velocity=Vector2D(0, 0))
+                                  velocity=Vector2D(0, 0),
+                                  acceleration=Vector2D(0, 1))
 
 
         self.kinetic_bodies: list[KineticBody] = [
@@ -63,19 +64,19 @@ class TestScene(ExtendedScene):
         image = Image('adventure_game\\res\\test\\bg1.jpg')
         image.scale(Vector2D(W, H))
         self.entities: list[IEntity] = [
-            # Wall(RectangleCollider(Rectangle(0, 0, W, H)),
-            #      image)
+            Wall(RectangleCollider(Rectangle(0, 0, W, H)),
+                 image)
         ] + self.collidables
 
-        for _ in range(60):
-            r = randint(10, 20)
+        for _ in range(5):
+            r = randint(40, 60)
             x, y = randint(T + T, W - T - T), randint(T + T, H - T - T)
             v = Vector2D(randint(-30, 30), randint(-30, 30))
             color = Color(randint(0, 255), randint(0, 255), randint(0, 255))
 
             ball = ElasticBody(RectangleCollider(Rectangle(x, y, 2 * r, 2 * r)),
                                OffsetCircleDrawable(r, color, offset=Vector2D(r, r)),
-                               mass=r * 2, velocity=v)
+                               mass=r * 2, velocity=v, acceleration=Vector2D(0, 1))
 
             self.kinetic_bodies.append(ball)
             self.elastic_bodies.append(ball)
@@ -110,11 +111,11 @@ class TestScene(ExtendedScene):
         for updatable in self.updatables:
             updatable.update()
 
-        # for e in self.elastic_bodies:
-        #     if e.velocity.x > 50:
-        #         e.velocity.x = 50
-        #     if e.velocity.y > 50:
-        #         e.velocity.y = 50
+        for e in self.elastic_bodies:
+            if e.velocity.x > 50:
+                e.velocity.x = 50
+            if e.velocity.y > 50:
+                e.velocity.y = 50
 
         KineticBody.handle_collisions_of_all(self.kinetic_bodies, self.collidables)
         ElasticBody.handle_elastic_collisions_of_all(self.elastic_bodies, self.not_elastic_collidables)
